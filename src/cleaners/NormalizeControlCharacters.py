@@ -1,7 +1,7 @@
 import .BaseCleaner
 
 class NormalizeControlCharacters(BaseCleaner):
-    def clean(self, original, target):
+    def clean(self, source, target):
         """
         Normalize control characters in the data.
         """

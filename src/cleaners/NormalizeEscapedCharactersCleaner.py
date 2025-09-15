@@ -1,7 +1,7 @@
 from .BaseCleaner import BaseCleaner
 
 class NormalizeEscapedCharactersCleaner(BaseCleaner):
-    def clean(self, original, target):
+    def clean(self, source, target):
         """
         Normalize escaped characters in the data.
         """

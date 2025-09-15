@@ -1,7 +1,7 @@
 from .BaseCleaner import BaseCleaner
 
 class NormalizeQuoteCleaner(BaseCleaner):
-    def clean(self, original, target):
+    def clean(self, source, target):
         """
         Normalize quotes in the data.
         """
