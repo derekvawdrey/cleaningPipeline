@@ -16,7 +16,7 @@ from post_cleaners.LengthRatioCleaner import LengthRatioCleaner
 from cleaners.SourceTargetMatchCleaner import SourceTargetMatchCleaner
 from cleaners.VariableCleaner import VariableCleaner
 from cleaners.WhiteSpaceRatioCleaner import WhiteSpaceRatioCleaner
-
+from cleaners.HtmlCleaner import HtmlCleaner
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -53,7 +53,8 @@ class MainCleaner:
                 UnbalancedQuoteCleaner(),
                 VariableCleaner(),
                 WhiteSpaceRatioCleaner(),
-                NormalizeEscapedCharactersCleaner()
+                NormalizeEscapedCharactersCleaner(),
+                HtmlCleaner()
             ]
             logger.info("Successfully initialized all segment cleaners")
         except Exception as e:
