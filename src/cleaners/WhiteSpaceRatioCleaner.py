@@ -20,3 +20,4 @@ class WhiteSpaceRatioCleaner(BaseCleaner):
         """
         Clean the data.
         """
+        return (source, target)
