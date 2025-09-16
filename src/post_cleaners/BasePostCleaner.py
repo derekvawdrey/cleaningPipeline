@@ -6,5 +6,5 @@ class BasePostCleaner:
     def __init__(self):
         pass
 
-    def clean(self, data):
+    def clean(self, source_data, target_data):
         pass
