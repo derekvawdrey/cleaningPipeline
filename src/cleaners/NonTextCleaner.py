@@ -10,8 +10,6 @@ class NonTextCleaner(BaseCleaner):
         # Count the number of non-text characters in the source
         # If the ratio is above 85% return false
         non_text_count = len(re.findall(r'[^a-zA-Z\s]', source))
-        print(f"Non-text count: {non_text_count}, {0.85 * len(source)}")
-        
         if non_text_count > 0.85 * len(source):
             return False
         
