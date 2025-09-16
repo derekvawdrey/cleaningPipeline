@@ -30,12 +30,25 @@ def main(files, data_dir):
         loadedPairs = parser.load_tmx_file(file)
         print(f"Loaded {len(loadedPairs)} pairs from {file}")
 
+    english_data = []
+    japanese_data = []
 
     # Clean the data
     for pair in loadedPairs:
         cleaned_data, is_valid = cleaner.clean(pair['source'], pair['target'])
         if is_valid:
-            pass
+            english_data.append(cleaned_data['source'])
+            japanese_data.append(cleaned_data['target'])
+
+    # Save the data to a file
+    with open('english_data.txt', 'w') as f:
+        for data in english_data:
+            f.write(data + '\n')
+
+    with open('japanese_data.txt', 'w') as f:
+        for data in japanese_data:
+            f.write(data + '\n')
+
 
     # TODO: Post clean the data
 

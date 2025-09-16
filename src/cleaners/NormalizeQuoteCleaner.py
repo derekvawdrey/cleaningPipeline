@@ -31,7 +31,7 @@ class NormalizeQuoteCleaner(BaseCleaner):
         }
 
 
-        japaneseQuoteMap = {
+        japanese_quote_map = {
             "‘": "＇",
             "’": "＇",
             "“": "＂",
@@ -39,11 +39,11 @@ class NormalizeQuoteCleaner(BaseCleaner):
         }
 
         # Check if the source contains double or single quotes
-        if any(quote in source for quote in englishQuoteMap):
-            for quote in englishQuoteMap:
-                source = source.replace(quote, englishQuoteMap[quote])
-        if any(quote in target for quote in japaneseQuoteMap):
-            for quote in japaneseQuoteMap:
-                target = target.replace(quote, japaneseQuoteMap[quote])
+        if any(quote in source for quote in english_quote_map):
+            for quote in english_quote_map:
+                source = source.replace(quote, english_quote_map[quote])
+        if any(quote in target for quote in japanese_quote_map):
+            for quote in japanese_quote_map:
+                target = target.replace(quote, japanese_quote_map[quote])
 
         return (source, target)
