@@ -9,6 +9,7 @@ from cleaners.NormalizeQuoteCleaner import NormalizeQuoteCleaner
 from cleaners.RemoveLongShortCleaner import RemoveLongShortCleaner
 from cleaners.RemoveSenselessCleaner import RemoveSenselessCleaner
 from cleaners.UnbalancedBracketCleaner import UnbalancedBracketCleaner
+from cleaners.UnbalancedQuoteCleaner import UnbalancedQuoteCleaner
 from post_cleaners.BasePostCleaner import BasePostCleaner
 from post_cleaners.DuplicatePostCleaner import DuplicatePostCleaner
 from post_cleaners.LengthRatioCleaner import LengthRatioCleaner
@@ -47,7 +48,8 @@ class MainCleaner:
                 RemoveLongShortCleaner(),
                 RemoveSenselessCleaner(),
                 UnbalancedBracketCleaner(),
-                SourceTargetMatchCleaner()
+                SourceTargetMatchCleaner(),
+                UnbalancedQuoteCleaner()
             ]
             logger.info("Successfully initialized all segment cleaners")
         except Exception as e:

@@ -27,6 +27,12 @@ class RemoveSenselessCleaner(BaseCleaner):
         target_match = regex.match(r'{{.*}}', target)
         if source_match or target_match:
             return False
+        
+        # If text starts with a. or 1.
+        source_match = regex.match(r'^[a-z|0-9]\.', source)
+        target_match = regex.match(r'^[a-z|0-9]\.', target)
+        if source_match or target_match:
+            return False
 
         return True
 
@@ -38,7 +44,17 @@ class RemoveSenselessCleaner(BaseCleaner):
 
         # Remove unnecessary characters like …, \\, //
         source = source.replace("…", "")
+        target = target.replace("…", "")
         source = source.replace("\\\\", "")
         target = target.replace("\\\\", "")
+
+        source = source.replace("\u3000", "")
+        target = target.replace("\u3000", "")
+
+        source = source.replace("\u30fb", "")
+        target = target.replace("\u30fb", "")
+
+        source = source.replace("\u2022", "")
+        target = target.replace("\u2022", "")
 
         return (source, target)

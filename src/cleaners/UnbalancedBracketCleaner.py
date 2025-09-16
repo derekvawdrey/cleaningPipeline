@@ -14,7 +14,19 @@ class UnbalancedBracketCleaner(BaseCleaner):
                     return False
                 if bracket_stack[-1] == opening_brackets[closing_brackets.index(char)]:
                     bracket_stack.pop()
-        return len(bracket_stack) == 0
+        
+        
+        japanese_bracket_stack = []
+        for char in target:
+            if char in opening_brackets:
+                japanese_bracket_stack.append(char)
+            elif char in closing_brackets:
+                if not japanese_bracket_stack:
+                    return False
+                if japanese_bracket_stack[-1] == opening_brackets[closing_brackets.index(char)]:
+                    japanese_bracket_stack.pop()
+        
+        return len(bracket_stack) == 0 and len(japanese_bracket_stack) == 0
 
 
     def clean(self, source, target):
