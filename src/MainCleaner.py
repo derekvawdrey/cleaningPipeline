@@ -45,7 +45,6 @@ class MainCleaner:
                 EmptySegmentCleaner(),
                 NonTextCleaner(),
                 NormalizeControlCharactersCleaner(),
-                NormalizeEscapedCharactersCleaner(),
                 NormalizeQuoteCleaner(),
                 RemoveLongShortCleaner(),
                 RemoveSenselessCleaner(),
@@ -53,7 +52,8 @@ class MainCleaner:
                 SourceTargetMatchCleaner(),
                 UnbalancedQuoteCleaner(),
                 VariableCleaner(),
-                WhiteSpaceRatioCleaner()
+                WhiteSpaceRatioCleaner(),
+                NormalizeEscapedCharactersCleaner()
             ]
             logger.info("Successfully initialized all segment cleaners")
         except Exception as e:

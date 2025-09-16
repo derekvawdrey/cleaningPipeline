@@ -1,4 +1,5 @@
 from .BaseCleaner import BaseCleaner
+import html
 
 class NormalizeEscapedCharactersCleaner(BaseCleaner):
     def clean(self, source, target):
@@ -13,7 +14,8 @@ class NormalizeEscapedCharactersCleaner(BaseCleaner):
         source = source.replace("–", "-")
         target = target.replace("–", "-")
 
-        # TODO: Turn escaped characters into their actual characters
+        source = html.unescape(source)
+        target = html.unescape(target)
 
         source = source.replace("\\", "")
         target = target.replace("\\", "")

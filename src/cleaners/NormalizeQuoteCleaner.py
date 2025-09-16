@@ -1,5 +1,6 @@
 from .BaseCleaner import BaseCleaner
 
+
 class NormalizeQuoteCleaner(BaseCleaner):
     def clean(self, source, target):
         """
