@@ -1,0 +1,2 @@
+lxml==6.0.1
+python-tmx==0.3.1
