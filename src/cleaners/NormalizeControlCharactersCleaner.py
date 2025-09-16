@@ -1,4 +1,4 @@
-import .BaseCleaner
+from .BaseCleaner import BaseCleaner
 
 class NormalizeControlCharactersCleaner(BaseCleaner):
     def clean(self, source, target):

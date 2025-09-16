@@ -6,5 +6,5 @@ class BasePostCleaner:
     def __init__(self):
         pass
 
-    def clean(self, data: pd.DataFrame):
+    def clean(self, data):
         pass

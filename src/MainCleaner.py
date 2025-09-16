@@ -1,4 +1,3 @@
-import pandas as pd
 import logging
 from typing import List, Tuple, Optional
 from cleaners.BaseCleaner import BaseCleaner

@@ -4,16 +4,31 @@ Main script for the cleaning pipeline.
 Demonstrates how to use the MainCleaner to process TMX files.
 """
 
-import pandas as pd
 import sys
 import os
+import click
 from MainCleaner import MainCleaner
 from TMXParser import TMXParser
 
-def main():
+@click.command()
+@click.argument('files', nargs=-1, type=click.Path(exists=True))
+@click.option('--data-dir', help='Directory containing TMX files')
+def main(files, data_dir):
     """Main function to demonstrate the cleaning pipeline."""
     cleaner = MainCleaner()
     parser = TMXParser()
+
+    files = list(files)
+
+    # If data-dir is provided, add them to the files list
+    if data_dir:
+        #Only if they are tmx files
+        files = files + list(os.path.join(data_dir, file) for file in os.listdir(data_dir) if file.endswith(".tmx"))
+
+    # Get the absolute path to the data directory
+    for file in files:
+        loadedPairs = parser.load_tmx_file(file)
+        print(f"Loaded {len(loadedPairs)} pairs from {file}")
 
 if __name__ == "__main__":
     main()
