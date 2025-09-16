@@ -14,6 +14,8 @@ class NormalizeEscapedCharactersCleaner(BaseCleaner):
         source = source.replace("–", "-")
         target = target.replace("–", "-")
 
+        # Remove LS and other
+
         source = html.unescape(source)
         target = html.unescape(target)
 
