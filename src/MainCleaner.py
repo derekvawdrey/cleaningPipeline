@@ -14,6 +14,8 @@ from post_cleaners.BasePostCleaner import BasePostCleaner
 from post_cleaners.DuplicatePostCleaner import DuplicatePostCleaner
 from post_cleaners.LengthRatioCleaner import LengthRatioCleaner
 from cleaners.SourceTargetMatchCleaner import SourceTargetMatchCleaner
+from cleaners.VariableCleaner import VariableCleaner
+from cleaners.WhiteSpaceRatioCleaner import WhiteSpaceRatioCleaner
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -49,7 +51,9 @@ class MainCleaner:
                 RemoveSenselessCleaner(),
                 UnbalancedBracketCleaner(),
                 SourceTargetMatchCleaner(),
-                UnbalancedQuoteCleaner()
+                UnbalancedQuoteCleaner(),
+                VariableCleaner(),
+                WhiteSpaceRatioCleaner()
             ]
             logger.info("Successfully initialized all segment cleaners")
         except Exception as e:

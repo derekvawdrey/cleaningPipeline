@@ -15,18 +15,6 @@ class RemoveSenselessCleaner(BaseCleaner):
         # If it is blank, return false
         if(source.strip() == "" or target.strip() == ""):
             return False
-
-        # If text is between <> return false
-        source_match = regex.match(r'<.*>', source)
-        target_match = regex.match(r'<.*>', target)
-        if source_match or target_match:
-            return False
-
-        # If text is between {{}}
-        source_match = regex.match(r'{{.*}}', source)
-        target_match = regex.match(r'{{.*}}', target)
-        if source_match or target_match:
-            return False
         
         # If text starts with a. or 1.
         source_match = regex.match(r'^[a-z|0-9]\.', source)
