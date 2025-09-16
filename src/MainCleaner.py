@@ -43,6 +43,7 @@ class MainCleaner:
         try:
             self.cleaners = [
                 EmptySegmentCleaner(),
+                NormalizeEscapedCharactersCleaner(),
                 NonTextCleaner(),
                 NormalizeControlCharactersCleaner(),
                 NormalizeQuoteCleaner(),
@@ -53,8 +54,8 @@ class MainCleaner:
                 UnbalancedQuoteCleaner(),
                 VariableCleaner(),
                 WhiteSpaceRatioCleaner(),
-                NormalizeEscapedCharactersCleaner(),
-                HtmlCleaner()
+                HtmlCleaner(),
+                UnbalancedQuoteCleaner()
             ]
             logger.info("Successfully initialized all segment cleaners")
         except Exception as e:
@@ -85,7 +86,6 @@ class MainCleaner:
             if not cleaner.validate(source, target):
                 is_valid = False
                 failed_cleaners.append(cleaner)
-                break
         
         if is_valid:
             cleaned_data['source'] = source

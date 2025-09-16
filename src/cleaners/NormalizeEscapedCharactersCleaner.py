@@ -22,4 +22,8 @@ class NormalizeEscapedCharactersCleaner(BaseCleaner):
         source = source.replace("\\", "")
         target = target.replace("\\", "")
 
+        # normalize whitespace
+        source = " ".join(source.split())
+        target = " ".join(target.split())
+
         return (source, target)

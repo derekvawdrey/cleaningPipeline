@@ -8,10 +8,14 @@ class WhiteSpaceRatioCleaner(BaseCleaner):
         """
         whitespace_count = len(re.findall(r'\s', source))
         non_whitespace_count = len(re.findall(r'\S', source))
+        if non_whitespace_count == 0:
+            return False
         if whitespace_count / non_whitespace_count > 0.30:
             return False
         whitespace_count = len(re.findall(r'\s', target))
         non_whitespace_count = len(re.findall(r'\S', target))
+        if non_whitespace_count == 0:
+            return False
         if whitespace_count / non_whitespace_count > 0.30:
             return False
         return True
@@ -20,4 +24,8 @@ class WhiteSpaceRatioCleaner(BaseCleaner):
         """
         Clean the data.
         """
+        target = " ".join(target.split())
+        source = " ".join(source.split())
+        target.replace("  ", " ")
+        source.replace("  ", " ")
         return (source, target)
