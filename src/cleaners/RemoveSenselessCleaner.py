@@ -15,8 +15,14 @@ class RemoveSenselessCleaner(BaseCleaner):
         # If it is blank, return false
         if(source.strip() == "" or target.strip() == ""):
             return False
-        return True
 
+        # If all the text is between <> return false
+        source_match = regex.match(r'<.*>', source)
+        target_match = regex.match(r'<.*>', target)
+        if source_match or target_match:
+            return False
+            
+        return True
 
     def clean(self, source, target):
         """
@@ -28,7 +34,5 @@ class RemoveSenselessCleaner(BaseCleaner):
         source = source.replace("…", "")
         source = source.replace("\\\\", "")
         target = target.replace("\\\\", "")
-        source = source.replace("//", "")
-        target = target.replace("//", "")
 
         return (source, target)
