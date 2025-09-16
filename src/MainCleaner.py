@@ -12,6 +12,7 @@ from cleaners.UnbalancedBracketCleaner import UnbalancedBracketCleaner
 from post_cleaners.BasePostCleaner import BasePostCleaner
 from post_cleaners.DuplicatePostCleaner import DuplicatePostCleaner
 from post_cleaners.LengthRatioCleaner import LengthRatioCleaner
+from cleaners.SourceTargetMatchCleaner import SourceTargetMatchCleaner
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -45,7 +46,8 @@ class MainCleaner:
                 NormalizeQuoteCleaner(),
                 RemoveLongShortCleaner(),
                 RemoveSenselessCleaner(),
-                UnbalancedBracketCleaner()
+                UnbalancedBracketCleaner(),
+                SourceTargetMatchCleaner()
             ]
             logger.info("Successfully initialized all segment cleaners")
         except Exception as e:
@@ -63,3 +65,26 @@ class MainCleaner:
         except Exception as e:
             logger.error(f"Error initializing post cleaners: {e}")
             raise
+    
+    def clean(self, source, target):
+        """Clean the data."""
+        cleaned_data = {}
+        is_valid = True
+        failed_cleaners = []
+
+        for cleaner in self.cleaners:
+            # Check validator
+            source, target = cleaner.clean(source, target)
+            if not cleaner.validate(source, target):
+                is_valid = False
+                failed_cleaners.append(cleaner)
+                break
+        
+        if is_valid:
+            cleaned_data['source'] = source
+            cleaned_data['target'] = target
+        else:
+            failed_cleaner_names = [cleaner.__class__.__name__ for cleaner in failed_cleaners]
+            print(f"Invalid data: {source} {target} - {failed_cleaner_names}")
+
+        return cleaned_data, is_valid

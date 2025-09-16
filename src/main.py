@@ -30,5 +30,14 @@ def main(files, data_dir):
         loadedPairs = parser.load_tmx_file(file)
         print(f"Loaded {len(loadedPairs)} pairs from {file}")
 
+
+    # Clean the data
+    for pair in loadedPairs:
+        cleaned_data, is_valid = cleaner.clean(pair['source'], pair['target'])
+        if is_valid:
+            pass
+
+    # TODO: Post clean the data
+
 if __name__ == "__main__":
     main()

@@ -12,4 +12,4 @@ class BaseCleaner():
         """
         Clean the data. This will be used to clean the data and return the cleaned data.
         """
-        pass
+        return (source, target)

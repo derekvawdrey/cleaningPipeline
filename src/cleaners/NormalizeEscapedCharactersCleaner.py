@@ -5,4 +5,9 @@ class NormalizeEscapedCharactersCleaner(BaseCleaner):
         """
         Normalize escaped characters in the data.
         """
-        pass
+
+        # ： should be :
+        source = source.replace("：", ":")
+        target = target.replace("：", ":")
+
+        return (source, target)

@@ -33,10 +33,9 @@ class TMXParser:
             # Only add pairs where we have both English and Japanese
             if english_text is not None and japanese_text is not None:
                 pairs.append({
-                    'english': english_text,
-                    'japanese': japanese_text
+                    'source': english_text,
+                    'target': japanese_text
                 })
-                print(english_text, "\n", japanese_text)
 
         self.loadedPairs.extend(pairs)
 
