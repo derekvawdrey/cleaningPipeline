@@ -39,6 +39,10 @@ def main(files, data_dir):
         if is_valid:
             english_data.append(cleaned_data['source'])
             japanese_data.append(cleaned_data['target'])
+    
+    # Post clean the data
+    for post_cleaner in cleaner.post_cleaners:
+        english_data, japanese_data = post_cleaner.clean(english_data, japanese_data)
 
     # Save the data to a file
     with open('english_data.txt', 'w') as f:
