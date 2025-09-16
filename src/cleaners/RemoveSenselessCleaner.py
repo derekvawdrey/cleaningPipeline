@@ -16,12 +16,18 @@ class RemoveSenselessCleaner(BaseCleaner):
         if(source.strip() == "" or target.strip() == ""):
             return False
 
-        # If all the text is between <> return false
+        # If text is between <> return false
         source_match = regex.match(r'<.*>', source)
         target_match = regex.match(r'<.*>', target)
         if source_match or target_match:
             return False
-            
+
+        # If text is between {{}}
+        source_match = regex.match(r'{{.*}}', source)
+        target_match = regex.match(r'{{.*}}', target)
+        if source_match or target_match:
+            return False
+
         return True
 
     def clean(self, source, target):
