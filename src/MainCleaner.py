@@ -18,6 +18,8 @@ from cleaners.VariableCleaner import VariableCleaner
 from cleaners.WhiteSpaceRatioCleaner import WhiteSpaceRatioCleaner
 from cleaners.HtmlCleaner import HtmlCleaner
 from cleaners.ContainsNoSpacesCleaner import ContainsNoSpacesCleaner
+from cleaners.LinkCleaner import LinkCleaner
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -51,6 +53,7 @@ class MainCleaner:
                 NormalizeQuoteCleaner(),
                 RemoveLongShortCleaner(),
                 RemoveSenselessCleaner(),
+                LinkCleaner(),
                 UnbalancedBracketCleaner(),
                 SourceTargetMatchCleaner(),
                 UnbalancedQuoteCleaner(),

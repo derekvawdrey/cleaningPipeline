@@ -24,8 +24,6 @@ class WhiteSpaceRatioCleaner(BaseCleaner):
         """
         Clean the data.
         """
-        target = " ".join(target.split())
-        source = " ".join(source.split())
-        target.replace("  ", " ")
-        source.replace("  ", " ")
+        target = " ".join(target.split()).strip()
+        source = " ".join(source.split()).strip()
         return (source, target)
