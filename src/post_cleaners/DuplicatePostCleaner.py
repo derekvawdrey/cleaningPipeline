@@ -24,9 +24,9 @@ class DuplicatePostCleaner(BasePostCleaner):
         for i, (source, target) in enumerate(zip(source_data, target_data)):
 
             # Only add if we haven't seen this exact pair before
-            if target not in seen_target and source not in seen_source:
-                seen_target.add(target)
-                seen_source.add(source)
+            if target.lower() not in seen_target and source.lower() not in seen_source:
+                seen_target.add(target.lower())
+                seen_source.add(source.lower())
                 cleaned_source.append(source)
                 cleaned_target.append(target)
         
