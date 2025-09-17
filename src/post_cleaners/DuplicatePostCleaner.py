@@ -16,17 +16,17 @@ class DuplicatePostCleaner(BasePostCleaner):
         if len(source_data) != len(target_data):
             raise ValueError("Source and target data must have the same length")
         
-        seen_pairs = set()
+        seen_target = set()
+        seen_source = set()
         cleaned_source = []
         cleaned_target = []
         
         for i, (source, target) in enumerate(zip(source_data, target_data)):
-            # Create a tuple of the source-target pair for comparison
-            pair = (source, target)
-            
+
             # Only add if we haven't seen this exact pair before
-            if pair not in seen_pairs:
-                seen_pairs.add(pair)
+            if target not in seen_target and source not in seen_source:
+                seen_target.add(target)
+                seen_source.add(source)
                 cleaned_source.append(source)
                 cleaned_target.append(target)
         
