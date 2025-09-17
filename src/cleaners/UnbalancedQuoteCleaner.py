@@ -22,4 +22,10 @@ class UnbalancedQuoteCleaner(BaseCleaner):
         """
         Remove unbalanced quotes from the data.
         """
+
+
+        # Remove double quotes from the data
+        source = source.replace('""', '"')
+        target = target.replace('""', '"')
+
         return (source, target)
