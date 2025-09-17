@@ -43,6 +43,7 @@ class MainCleaner:
         try:
             self.cleaners = [
                 EmptySegmentCleaner(),
+                ContainsNoSpacesCleaner(),
                 NormalizeEscapedCharactersCleaner(),
                 NonTextCleaner(),
                 NormalizeControlCharactersCleaner(),
