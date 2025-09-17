@@ -7,6 +7,11 @@ class UnbalancedQuoteCleaner(BaseCleaner):
         Validate the data.
         """
 
+        # If have double single quotes in the source, return false
+        # Double double quotes are handled easier
+        if "''" in source:
+            return False
+
         # We essentially want to count the number of quotes in the source, and make sure they are even.
         # Same with japanese quotes including the japanese style opening and closing quotes
 
