@@ -1,5 +1,7 @@
 # Executing the pipeline
 
+Before executing ensure you are either running in a virtual environment, using venv. Then install the requirements.txt
+
 To get a description of the arguments and commands you can use.
 ```python main.py --help```
 

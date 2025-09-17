@@ -1,4 +1,5 @@
 from .BaseCleaner import BaseCleaner
+import re
 
 class LinkCleaner(BaseCleaner):
     def clean(self, source, target):
