@@ -58,9 +58,9 @@ class MainCleaner:
                 SourceTargetMatchCleaner(),
                 UnbalancedQuoteCleaner(),
                 VariableCleaner(),
-                WhiteSpaceRatioCleaner(),
                 HtmlCleaner(),
-                UnbalancedQuoteCleaner()
+                UnbalancedQuoteCleaner(),
+                WhiteSpaceRatioCleaner(),
             ]
             logger.info("Successfully initialized all segment cleaners")
         except Exception as e:

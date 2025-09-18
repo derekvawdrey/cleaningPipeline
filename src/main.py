@@ -45,11 +45,11 @@ def main(files, data_dir):
         english_data, japanese_data = post_cleaner.clean(english_data, japanese_data)
 
     # Save the data to a file
-    with open('english_data.txt', 'w') as f:
+    with open('derek_vawdrey_english_data.txt', 'w') as f:
         for data in english_data:
             f.write(data + '\n')
 
-    with open('japanese_data.txt', 'w') as f:
+    with open('derek_vawdrey_japanese_data.txt', 'w') as f:
         for data in japanese_data:
             f.write(data + '\n')
 

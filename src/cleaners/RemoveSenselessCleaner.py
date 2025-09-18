@@ -45,4 +45,8 @@ class RemoveSenselessCleaner(BaseCleaner):
         source = source.replace("\u2022", "")
         target = target.replace("\u2022", "")
 
+        # Use this regex
+        source = regex.sub(r'&[A-Za-z]-', '', source)
+        target = regex.sub(r'&[A-Za-z]-', '', target)
+        
         return (source, target)

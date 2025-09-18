@@ -10,6 +10,9 @@ class RemoveLongShortCleaner(BaseCleaner):
         """
         if(len(source) > self.MAX_LENGTH or len(source) < self.MIN_LENGTH):
             return False
+        # If more than 100 words in the source, return false
+        if(len(source.split()) > 95):
+            return False
         return True
 
     def clean(self, source, target):
