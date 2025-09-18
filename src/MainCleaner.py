@@ -19,6 +19,8 @@ from cleaners.WhiteSpaceRatioCleaner import WhiteSpaceRatioCleaner
 from cleaners.HtmlCleaner import HtmlCleaner
 from cleaners.ContainsNoSpacesCleaner import ContainsNoSpacesCleaner
 from cleaners.LinkCleaner import LinkCleaner
+from cleaners.TimeCleaner import TimeCleaner 
+from cleaners.MostlyNumberCleaner import MostlyNumberCleaner
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -59,6 +61,8 @@ class MainCleaner:
                 UnbalancedQuoteCleaner(),
                 VariableCleaner(),
                 HtmlCleaner(),
+                TimeCleaner(),
+                MostlyNumberCleaner(),
                 UnbalancedQuoteCleaner(),
                 WhiteSpaceRatioCleaner(),
             ]

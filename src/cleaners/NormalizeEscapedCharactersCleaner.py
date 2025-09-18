@@ -1,5 +1,6 @@
 from .BaseCleaner import BaseCleaner
 import html
+import unicodedata
 
 class NormalizeEscapedCharactersCleaner(BaseCleaner):
     def clean(self, source, target):
@@ -14,10 +15,21 @@ class NormalizeEscapedCharactersCleaner(BaseCleaner):
         source = source.replace("–", "-")
         target = target.replace("–", "-")
 
-        # Remove LS and other
+        # Handle multiple levels of HTML entity encoding (e.g., &amp;amp;nbsp;)
+        while '&' in source and ';' in source:
+            new_source = html.unescape(source)
+            if new_source == source: 
+                break
+            source = new_source
+            
+        while '&' in target and ';' in target:
+            new_target = html.unescape(target)
+            if new_target == target:
+                break
+            target = new_target
 
-        source = html.unescape(source)
-        target = html.unescape(target)
+        source = unicodedata.normalize("NFKC", source)
+        target = unicodedata.normalize("NFKC", target)
 
         source = source.replace("\\", "")
         target = target.replace("\\", "")

@@ -45,6 +45,14 @@ class RemoveSenselessCleaner(BaseCleaner):
         source = source.replace("\u2022", "")
         target = target.replace("\u2022", "")
 
+        # Remove all instances of {*}
+        source = regex.sub(r'\{.*\}', '', source)
+        target = regex.sub(r'\{.*\}', '', target)
+
+        #Remove any unnecessary _ or _.
+        source = regex.sub(r'(_\.|_)', ' ', source)
+        target = regex.sub(r'(_\.|_)', ' ', target)
+
         # Use this regex
         source = regex.sub(r'&[A-Za-z]-', '', source)
         target = regex.sub(r'&[A-Za-z]-', '', target)
