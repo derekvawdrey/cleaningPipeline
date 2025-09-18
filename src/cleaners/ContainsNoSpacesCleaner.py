@@ -8,7 +8,7 @@ class ContainsNoSpacesCleaner(BaseCleaner):
         """
         Validate the data.
         """
-        if " " in source or " " in target:
+        if " " in source:
             return True
         return False
 
