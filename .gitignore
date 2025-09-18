@@ -4,3 +4,4 @@ data/*
 venv/*
 *.txt
 grader_intel_mac
+*.zip
