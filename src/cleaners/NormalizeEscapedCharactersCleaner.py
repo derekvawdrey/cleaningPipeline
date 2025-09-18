@@ -1,6 +1,7 @@
 from .BaseCleaner import BaseCleaner
 import html
 import unicodedata
+import re
 
 class NormalizeEscapedCharactersCleaner(BaseCleaner):
     def clean(self, source, target):
@@ -27,6 +28,10 @@ class NormalizeEscapedCharactersCleaner(BaseCleaner):
             if new_target == target:
                 break
             target = new_target
+        
+        # Replace any &#\d
+        source = re.sub(r'&#(\d+)', '', source)
+        target = re.sub(r'&#(\d+)', '', target)
 
         source = unicodedata.normalize("NFKC", source)
         target = unicodedata.normalize("NFKC", target)
