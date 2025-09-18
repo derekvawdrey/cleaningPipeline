@@ -12,10 +12,8 @@ class WhiteSpaceRatioCleaner(BaseCleaner):
             return False
         if whitespace_count / non_whitespace_count > 0.30:
             return False
+            
         whitespace_count = len(re.findall(r'\s', target))
-        non_whitespace_count = len(re.findall(r'\S', target))
-        if non_whitespace_count == 0:
-            return False
         if whitespace_count / non_whitespace_count > 0.30:
             return False
         return True
