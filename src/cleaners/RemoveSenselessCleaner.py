@@ -49,9 +49,21 @@ class RemoveSenselessCleaner(BaseCleaner):
         source = regex.sub(r'\{.*\}', '', source)
         target = regex.sub(r'\{.*\}', '', target)
 
+        # Remove all instances of (%TEXTOR WAHTERVER IN HERE%)
+        source = regex.sub(r'\(%.*?%\)', '', source)
+        target = regex.sub(r'\(%.*?%\)', '', target)
+
+        # Remove all instances of %VARAIBLE NAME%
+        source = regex.sub(r'%[A-Za-z]+%', '', source)
+        target = regex.sub(r'%[A-Za-z]+%', '', target)
+
         #Remove any unnecessary _ or _.
         source = regex.sub(r'(_\.|_)', ' ', source)
         target = regex.sub(r'(_\.|_)', ' ', target)
+
+        # Remove any variable fillers like %d or %s
+        source = regex.sub(r'%[ds]', '', source)
+        target = regex.sub(r'%[ds]', '', target)
 
         # Use this regex
         source = regex.sub(r'&[A-Za-z]-', '', source)
