@@ -57,6 +57,12 @@ class RemoveSenselessCleaner(BaseCleaner):
         source = regex.sub(r'%[A-Za-z]+%', '', source)
         target = regex.sub(r'%[A-Za-z]+%', '', target)
 
+        # Remove %%
+        source = regex.sub(r'%%', '', source)
+        target = regex.sub(r'%%', '', target)
+
+        target = target.replace("......","")
+
         #Remove any unnecessary _ or _.
         source = regex.sub(r'(_\.|_)', ' ', source)
         target = regex.sub(r'(_\.|_)', ' ', target)
@@ -66,7 +72,7 @@ class RemoveSenselessCleaner(BaseCleaner):
         target = regex.sub(r'%[ds]', '', target)
 
         # Use this regex
-        source = regex.sub(r'&[A-Za-z]-', '', source)
-        target = regex.sub(r'&[A-Za-z]-', '', target)
+        source = regex.sub(r'&[A-Za-z](-|—)', '', source)
+        target = regex.sub(r'&[A-Za-z](-|—)', '', target)
         
         return (source, target)
